@@ -3,14 +3,18 @@ import sys
 from datetime import datetime
 import time
 import logging
+import os
 
 # CONSTANTS
 HOURS_INTERVAL = 1 # Will run every hour
-CONFIG_FILE_NAME = ".google_play_music_auto_playlist_creator_config"
+CONFIG_FILE_NAME = os.path.join(os.path.abspath(os.path.dirname(__file__)), ".google_play_music_auto_playlist_creator_config")
 PLAYLIST_NAME = "Non-played"
 
 
-logging.basicConfig(filename='log.txt',level=logging.INFO, format="%(asctime)s %(levelname)s %(module)s %(message)s", datefmt='%Y-%m-%d %H:%M:%S %Z')
+logging.basicConfig(filename=os.path.join(os.path.abspath(os.path.dirname(__file__)), 'log.txt'),
+		level=logging.INFO,
+		format="%(asctime)s %(levelname)s %(module)s %(message)s",
+		datefmt='%Y-%m-%d %H:%M:%S %Z')
 api = Mobileclient()
 
 with open(CONFIG_FILE_NAME) as conf_file:
